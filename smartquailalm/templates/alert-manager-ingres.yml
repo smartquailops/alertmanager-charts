@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alert-manager-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "alertmanager.dev.smartquail.io"
+    http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: alertmanager
+              port:
+                number: 9093
